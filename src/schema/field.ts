@@ -28,3 +28,15 @@ export interface DateField extends BaseField {
 }
 
 export type FormField = TextField | SelectField | CheckboxField | DateField;
+
+export const FIELD_TYPES = ["text", "select", "checkbox", "date"] as const;
+
+// Crea un campo con valori di default, usato quando si trascina un tipo
+// dalla palette al canvas.
+export function createField(type: FormField["type"], id: string): FormField {
+  const base = { id, label: `Nuovo campo ${type}`, required: false };
+  if (type === "select") {
+    return { ...base, type, options: [] };
+  }
+  return { ...base, type };
+}

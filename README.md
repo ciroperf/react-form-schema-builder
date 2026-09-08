@@ -35,6 +35,23 @@ npm test
 npm run build
 ```
 
+## Palette e canvas
+
+`FieldPalette` mostra un elemento trascinabile per ogni tipo di campo
+(text, select, checkbox, date). Trascinandolo su `FormCanvas` viene
+aggiunto un nuovo campo allo stato del form; i campi gia' presenti nel
+canvas si possono riordinare trascinandoli tra loro. Il collegamento tra
+palette e canvas avviene in `App.tsx` tramite un `DndContext` di dnd-kit.
+
+Esempio di stato di `useFormBuilder` dopo aver trascinato un campo
+"Testo" dalla palette al canvas:
+
+```json
+[
+  { "id": "3f9b...", "type": "text", "label": "Nuovo campo text", "required": false }
+]
+```
+
 ## Screenshot
 
 _(da aggiungere)_
