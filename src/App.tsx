@@ -1,5 +1,6 @@
 import { DndContext, type DragEndEvent } from "@dnd-kit/core";
 import { CANVAS_DROPPABLE_ID, FormCanvas } from "./components/FormCanvas";
+import { CodeExport } from "./components/CodeExport";
 import { FieldInspector } from "./components/FieldInspector";
 import { PALETTE_DRAG_PREFIX, FieldPalette } from "./components/FieldPalette";
 import { FormPreview } from "./components/FormPreview";
@@ -44,6 +45,7 @@ export function App() {
       </DndContext>
       <FieldInspector field={selectedField} updateField={updateField} />
       <FormPreview fields={fields} />
+      <CodeExport fields={fields} />
     </main>
   );
 }

@@ -52,6 +52,15 @@ Esempio di stato di `useFormBuilder` dopo aver trascinato un campo
 ]
 ```
 
+## Esporta codice
+
+`CodeExport` mostra due tab con syntax highlight (via
+[prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer)):
+il componente React/TypeScript generato da `fieldsToComponentCode`
+(gia' cablato con `react-hook-form`) e il JSON Schema equivalente
+generato da `fieldsToJsonSchema`. Un pulsante "Copia" copia negli
+appunti il codice del tab attivo.
+
 ## Screenshot
 
 _(da aggiungere)_
