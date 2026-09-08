@@ -29,6 +29,7 @@ coverage/
 bin/
 obj/
 target/
+*.tsbuildinfo
 __pycache__/
 *.py[cod]
 .venv/
