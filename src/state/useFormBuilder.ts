@@ -7,11 +7,18 @@ export interface UseFormBuilder {
   removeField: (id: string) => void;
   reorderField: (fromIndex: number, toIndex: number) => void;
   updateField: (id: string, updates: Partial<FormField>) => void;
+  selectedFieldId: string | null;
+  selectField: (id: string | null) => void;
 }
 
 // Store in-memory (nessuna persistenza) per la lista di campi in costruzione.
 export function useFormBuilder(initialFields: FormField[] = []): UseFormBuilder {
   const [fields, setFields] = useState<FormField[]>(initialFields);
+  const [selectedFieldId, setSelectedFieldId] = useState<string | null>(null);
+
+  const selectField = useCallback((id: string | null) => {
+    setSelectedFieldId(id);
+  }, []);
 
   const addField = useCallback((field: FormField) => {
     setFields((prev) => [...prev, field]);
@@ -44,5 +51,13 @@ export function useFormBuilder(initialFields: FormField[] = []): UseFormBuilder 
     );
   }, []);
 
-  return { fields, addField, removeField, reorderField, updateField };
+  return {
+    fields,
+    addField,
+    removeField,
+    reorderField,
+    updateField,
+    selectedFieldId,
+    selectField,
+  };
 }

@@ -1,11 +1,14 @@
 import { DndContext, type DragEndEvent } from "@dnd-kit/core";
 import { CANVAS_DROPPABLE_ID, FormCanvas } from "./components/FormCanvas";
+import { FieldInspector } from "./components/FieldInspector";
 import { PALETTE_DRAG_PREFIX, FieldPalette } from "./components/FieldPalette";
 import { createField, type FormField } from "./schema/field";
 import { useFormBuilder } from "./state/useFormBuilder";
 
 export function App() {
-  const { fields, addField, reorderField } = useFormBuilder();
+  const { fields, addField, reorderField, updateField, selectedFieldId, selectField } =
+    useFormBuilder();
+  const selectedField = fields.find((field) => field.id === selectedFieldId);
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
@@ -36,8 +39,9 @@ export function App() {
       <h1>React Form Schema Builder</h1>
       <DndContext onDragEnd={handleDragEnd}>
         <FieldPalette />
-        <FormCanvas fields={fields} />
+        <FormCanvas fields={fields} selectedFieldId={selectedFieldId} onSelectField={selectField} />
       </DndContext>
+      <FieldInspector field={selectedField} updateField={updateField} />
     </main>
   );
 }

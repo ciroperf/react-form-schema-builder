@@ -9,13 +9,17 @@ export const CANVAS_DROPPABLE_ID = "form-canvas";
 
 interface FormCanvasProps {
   fields: FormField[];
+  selectedFieldId?: string | null;
+  onSelectField?: (id: string) => void;
 }
 
 interface SortableFieldItemProps {
   field: FormField;
+  isSelected?: boolean;
+  onSelect?: (id: string) => void;
 }
 
-function SortableFieldItem({ field }: SortableFieldItemProps) {
+function SortableFieldItem({ field, isSelected, onSelect }: SortableFieldItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
     id: field.id,
   });
@@ -26,13 +30,20 @@ function SortableFieldItem({ field }: SortableFieldItemProps) {
   };
 
   return (
-    <li ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <li
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      aria-selected={isSelected}
+      onClick={() => onSelect?.(field.id)}
+    >
       <strong>{field.type}</strong> {field.label}
     </li>
   );
 }
 
-export function FormCanvas({ fields }: FormCanvasProps) {
+export function FormCanvas({ fields, selectedFieldId, onSelectField }: FormCanvasProps) {
   const { setNodeRef } = useDroppable({ id: CANVAS_DROPPABLE_ID });
 
   return (
@@ -44,7 +55,12 @@ export function FormCanvas({ fields }: FormCanvasProps) {
         <SortableContext items={fields.map((field) => field.id)} strategy={verticalListSortingStrategy}>
           <ul>
             {fields.map((field) => (
-              <SortableFieldItem key={field.id} field={field} />
+              <SortableFieldItem
+                key={field.id}
+                field={field}
+                isSelected={field.id === selectedFieldId}
+                onSelect={onSelectField}
+              />
             ))}
           </ul>
         </SortableContext>
