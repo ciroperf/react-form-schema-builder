@@ -63,4 +63,10 @@ appunti il codice del tab attivo.
 
 ## Screenshot
 
-_(da aggiungere)_
+_(da aggiungere)_ Lo screenshot dovrebbe mostrare il layout a due colonne
+dell'app con almeno un paio di campi gia' aggiunti al form: a sinistra la
+palette dei campi disponibili sopra il canvas con i campi trascinati (uno
+selezionato, per mostrare l'evidenziazione); a destra, dall'alto in basso,
+il pannello delle proprieta' del campo selezionato, l'anteprima live del
+form compilabile e la sezione di esportazione con le tab "Componente" /
+"JSON Schema" e il relativo codice con syntax highlight.

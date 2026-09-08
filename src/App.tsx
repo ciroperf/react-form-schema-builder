@@ -6,6 +6,7 @@ import { PALETTE_DRAG_PREFIX, FieldPalette } from "./components/FieldPalette";
 import { FormPreview } from "./components/FormPreview";
 import { createField, type FormField } from "./schema/field";
 import { useFormBuilder } from "./state/useFormBuilder";
+import "./App.css";
 
 export function App() {
   const { fields, addField, reorderField, updateField, selectedFieldId, selectField } =
@@ -37,15 +38,21 @@ export function App() {
   }
 
   return (
-    <main>
+    <main className="app-layout">
       <h1>React Form Schema Builder</h1>
-      <DndContext onDragEnd={handleDragEnd}>
-        <FieldPalette />
-        <FormCanvas fields={fields} selectedFieldId={selectedFieldId} onSelectField={selectField} />
-      </DndContext>
-      <FieldInspector field={selectedField} updateField={updateField} />
-      <FormPreview fields={fields} />
-      <CodeExport fields={fields} />
+      <div className="app-columns">
+        <div className="app-column app-column-build">
+          <DndContext onDragEnd={handleDragEnd}>
+            <FieldPalette />
+            <FormCanvas fields={fields} selectedFieldId={selectedFieldId} onSelectField={selectField} />
+          </DndContext>
+        </div>
+        <div className="app-column app-column-edit">
+          <FieldInspector field={selectedField} updateField={updateField} />
+          <FormPreview fields={fields} />
+          <CodeExport fields={fields} />
+        </div>
+      </div>
     </main>
   );
 }
