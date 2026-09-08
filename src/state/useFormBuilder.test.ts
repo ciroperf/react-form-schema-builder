@@ -65,4 +65,13 @@ describe("useFormBuilder", () => {
       required: false,
     });
   });
+
+  it("seleziona un campo con selectField", () => {
+    const { result } = renderHook(() => useFormBuilder([textField, selectField]));
+    expect(result.current.selectedFieldId).toBeNull();
+    act(() => {
+      result.current.selectField(textField.id);
+    });
+    expect(result.current.selectedFieldId).toBe(textField.id);
+  });
 });
