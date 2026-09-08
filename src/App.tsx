@@ -2,6 +2,7 @@ import { DndContext, type DragEndEvent } from "@dnd-kit/core";
 import { CANVAS_DROPPABLE_ID, FormCanvas } from "./components/FormCanvas";
 import { FieldInspector } from "./components/FieldInspector";
 import { PALETTE_DRAG_PREFIX, FieldPalette } from "./components/FieldPalette";
+import { FormPreview } from "./components/FormPreview";
 import { createField, type FormField } from "./schema/field";
 import { useFormBuilder } from "./state/useFormBuilder";
 
@@ -42,6 +43,7 @@ export function App() {
         <FormCanvas fields={fields} selectedFieldId={selectedFieldId} onSelectField={selectField} />
       </DndContext>
       <FieldInspector field={selectedField} updateField={updateField} />
+      <FormPreview fields={fields} />
     </main>
   );
 }
